@@ -42,7 +42,7 @@ def upgrade():
 
     # perform data migration between tables
     session = sa.orm.Session(bind=op.get_bind())
-    with session.begin(subtransactions=True):
+    with session.begin():
         for row in session.query(COMPUTE_NODE_TABLE):
             session.execute(
                 COMPUTE_NODE_TABLE.update().values(

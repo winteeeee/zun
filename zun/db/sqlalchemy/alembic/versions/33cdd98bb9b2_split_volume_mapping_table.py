@@ -93,7 +93,7 @@ def update_existing_records():
 
     # perform data migration between tables
     session = sa.orm.Session(bind=op.get_bind())
-    with session.begin(subtransactions=True):
+    with session.begin():
         for row in session.query(VOLUME_MAPPING_TABLE):
             res = session.execute(
                 VOLUME_TABLE.insert().values(
